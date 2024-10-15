@@ -6,7 +6,7 @@ on:
     paths:
       - ".changeset/**"
       - ".github/workflows/packages-release.yml"
-  workflow_dispatch:
+  workflow_dispatch: 
 env:
   CI: true
   PNPM_CACHE_FOLDER: .pnpm-store
