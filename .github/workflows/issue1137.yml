@@ -8,9 +8,8 @@ on:
       - ".github/workflows/packages-release.yml"
   workflow_dispatch:
 env:
+  CI: true
   PNPM_CACHE_FOLDER: .pnpm-store
-  PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
-
 jobs:
   version_or_release:
     name: 'Version and open PR (or) release private packages'
@@ -31,9 +30,7 @@ jobs:
           node-version: 18
           cache: 'pnpm'
       - name: setup pnpm store config
-        run: |
-          export PATH=$PNPM_HOME:$PATH
-          pnpm config set store-dir $PNPM_CACHE_FOLDER
+        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
       
       - name: install dependencies
         run: pnpm install --frozen-lockfile
