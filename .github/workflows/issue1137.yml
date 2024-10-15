@@ -30,7 +30,10 @@ jobs:
           node-version: 18
           cache: 'pnpm'
       - name: setup pnpm store config
-        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+        run: |
+          /home/runner/setup-pnpm/node_modules/.bin/pnpm config set store-dir=$PNPM_CACHE_FOLDER
+
+      
       - name: install dependencies
         run: pnpm install --frozen-lockfile
       - name: setup npmrc file to configure pnpm
