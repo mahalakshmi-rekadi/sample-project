@@ -6,7 +6,7 @@ on:
     paths:
       - ".changeset/**"
       - ".github/workflows/packages-release.yml"
-  workflow_dispatch: 
+  workflow_dispatch:
 env:
   CI: true
   PNPM_CACHE_FOLDER: .pnpm-store
@@ -22,13 +22,13 @@ jobs:
         with:
           fetch-depth: 0
       - uses: pnpm/action-setup@v4
+        with:
+          version: 6.14.5
       - name: setup node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'pnpm'
-      - name: setup pnpm store config
-        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
       - name: install dependencies
         run: pnpm install --frozen-lockfile
       - name: setup npmrc file to configure pnpm
@@ -52,3 +52,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HOME: ${{ github.workspace }}
+     
+    
+     
